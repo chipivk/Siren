@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// Siren initializes a listener on `didBecomeActiveNotification` to perform version checks.
 
 //        defaultExample()
-        defaultExampleUsingCompletionHandler()
+//        defaultExampleUsingCompletionHandler()
 //        manualExampleWithCompletionHandler()
 //        minimalCustomizationPresentationExample()
 //        forceLocalizationCustomizationPresentationExample()
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        updateSpecificRulesExample()
 //        customAlertRulesExample()
 //        appStoreCountryChangeExample()
-//        complexExample()
+        complexExample()
 
         return true
     }
@@ -52,6 +52,8 @@ private extension AppDelegate {
     /// All default rules are implemented and the
     /// results of the completion handler are returned or an error is returned.
     func defaultExampleUsingCompletionHandler() {
+        Siren.shared.apiManager = APIManager(countryCode: "ES")
+        Siren.shared.presentationManager.customAlertController = CustomAlertViewController(nibName: "CustomAlertViewController", bundle: nil)
         Siren.shared.wail { results in
             switch results {
             case .success(let updateResults):
@@ -253,6 +255,8 @@ private extension AppDelegate {
                                           minorUpdateRules: .annoying,
                                           patchUpdateRules: .default,
                                           revisionUpdateRules: .relaxed)
+
+        siren.presentationManager.customAlertController = CustomAlertViewController(nibName: "CustomAlertViewController", bundle: nil)
 
         siren.wail { results in
             switch results {

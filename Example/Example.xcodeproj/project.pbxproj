@@ -36,6 +36,9 @@
 		8EF9F88C224EACB200B20545 /* SirenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9F878224EACB200B20545 /* SirenViewController.swift */; };
 		8EF9F88E224EB00100B20545 /* Siren.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF9F853224EACA500B20545 /* Siren.framework */; };
 		8EF9F88F224EB00100B20545 /* Siren.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF9F853224EACA500B20545 /* Siren.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AE72EE0C24728BB7007FE6B7 /* SirenCustomViewControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE72EE0B24728BB7007FE6B7 /* SirenCustomViewControllerInterface.swift */; };
+		AE72EFAB247677A7007FE6B7 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE72EFA9247677A7007FE6B7 /* CustomAlertViewController.swift */; };
+		AE72EFAC247677A7007FE6B7 /* CustomAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE72EFAA247677A7007FE6B7 /* CustomAlertViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,9 @@
 		8EF9F876224EACB200B20545 /* Siren.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Siren.bundle; path = ../../Sources/Siren.bundle; sourceTree = "<group>"; };
 		8EF9F878224EACB200B20545 /* SirenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SirenViewController.swift; sourceTree = "<group>"; };
 		8EF9F88D224EACBF00B20545 /* Siren.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Siren.h; sourceTree = "<group>"; };
+		AE72EE0B24728BB7007FE6B7 /* SirenCustomViewControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SirenCustomViewControllerInterface.swift; sourceTree = "<group>"; };
+		AE72EFA9247677A7007FE6B7 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		AE72EFAA247677A7007FE6B7 /* CustomAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,8 @@
 				8EACA96C1F37F2D3003134CA /* Info.plist */,
 				8EACA96D1F37F2D3003134CA /* ViewController.swift */,
 				55EC364A1E6BB98A00726F13 /* Info.plist */,
+				AE72EFA9247677A7007FE6B7 /* CustomAlertViewController.swift */,
+				AE72EFAA247677A7007FE6B7 /* CustomAlertViewController.xib */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				8EF9F878224EACB200B20545 /* SirenViewController.swift */,
+				AE72EE0B24728BB7007FE6B7 /* SirenCustomViewControllerInterface.swift */,
 			);
 			name = "View Controllers";
 			path = "../../Sources/View Controllers";
@@ -354,7 +363,7 @@
 					};
 					8EC391801A58B465001C121E = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = HT94948NDD;
+						DevelopmentTeam = HCUZ6A6WNL;
 						DevelopmentTeamName = "Arthur Sabintsev";
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
@@ -371,7 +380,7 @@
 					};
 					8EF9F852224EACA500B20545 = {
 						CreatedOnToolsVersion = 10.2;
-						DevelopmentTeam = HT94948NDD;
+						DevelopmentTeam = HCUZ6A6WNL;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
@@ -409,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE72EFAC247677A7007FE6B7 /* CustomAlertViewController.xib in Resources */,
 				8EACA9711F380294003134CA /* LaunchScreen.xib in Resources */,
 				8EA6AAB323F2424600283B43 /* Default-568h@2x.png in Resources */,
 				8EACA9721F380294003134CA /* Main.storyboard in Resources */,
@@ -458,6 +468,7 @@
 			files = (
 				8EACA9741F38029B003134CA /* AppDelegate.swift in Sources */,
 				8EACA9751F38029B003134CA /* ViewController.swift in Sources */,
+				AE72EFAB247677A7007FE6B7 /* CustomAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +495,7 @@
 				8EF9F87C224EACB200B20545 /* AlertAction.swift in Sources */,
 				8EF9F88A224EACB200B20545 /* KnownError.swift in Sources */,
 				8EF9F87A224EACB200B20545 /* RulesManager.swift in Sources */,
+				AE72EE0C24728BB7007FE6B7 /* SirenCustomViewControllerInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,11 +680,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = HT94948NDD;
+				DEVELOPMENT_TEAM = HCUZ6A6WNL;
 				INFOPLIST_FILE = "$(SRCROOT)/Siren/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.AppStoreConnect;
+				PRODUCT_BUNDLE_IDENTIFIER = es.financieraelcorteingles.feci;
 				PRODUCT_NAME = Example;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -685,11 +697,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = HT94948NDD;
+				DEVELOPMENT_TEAM = HCUZ6A6WNL;
 				INFOPLIST_FILE = "$(SRCROOT)/Siren/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.AppStoreConnect;
+				PRODUCT_BUNDLE_IDENTIFIER = es.financieraelcorteingles.feci;
 				PRODUCT_NAME = Example;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
@@ -712,7 +724,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = HT94948NDD;
+				DEVELOPMENT_TEAM = HCUZ6A6WNL;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -751,7 +763,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = HT94948NDD;
+				DEVELOPMENT_TEAM = HCUZ6A6WNL;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

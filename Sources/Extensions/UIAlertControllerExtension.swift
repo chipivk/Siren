@@ -8,8 +8,7 @@
 
 import UIKit
 
-// `UIAlertController` Extension for Siren.
-extension UIAlertController {
+extension UIViewController {
     /// Presents Siren's `UIAlertController` in a new `UIWindow`.
     ///
     /// - Parameter window: The `UIWindow` that _should_ reference Siren's `UIAlertController`.
