@@ -102,7 +102,7 @@ private extension AppDelegate {
         }
     }
 
-    /// Forcing the language of the update alert to a specific localization (e.g., Russian is force in this function.
+    /// Forcing the language of the update alert to a specific localization (e.g., Russian is forced in this function)
     func forceLocalizationCustomizationPresentationExample() {
         let siren = Siren.shared
         siren.presentationManager = PresentationManager(forceLanguageLocalization: .russian)
@@ -228,7 +228,7 @@ private extension AppDelegate {
     /// This example function illustrates how this can be done by checking against the Russian App Store.
     func appStoreCountryChangeExample() {
         let siren = Siren.shared
-        siren.apiManager = APIManager(countryCode: "RU")
+        siren.apiManager = APIManager(country: .spain)
 
         siren.wail { results in
             switch results {

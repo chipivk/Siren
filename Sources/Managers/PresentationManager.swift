@@ -159,53 +159,52 @@ extension PresentationManager {
             // If the alertType is .none, an alert will not be presented.
             // If the `updaterWindow` is not hidden, then an alert is already presented.
             // The latter prevents `UIAlertController`'s from appearing on top of each other.
-            if rules.alertType != .none, updaterWindow.isHidden {
+            if rules.alertType != .none, let updaterWindow = updaterWindow, updaterWindow.isHidden {
                 (customAlertController as? UIViewController)?.show(window: updaterWindow)
             } else {
                 // This is a safety precaution to avoid multiple windows from presenting on top of each other.
                 cleanUp()
             }
+        }
 
+        alertController = UIAlertController(title: alertTitle,
+                                            message: alertMessage,
+                                            preferredStyle: .alert)
+
+        if let tintColor = tintColor {
+            alertController?.view.tintColor = tintColor
+        }
+
+        switch rules.alertType {
+        case .force:
+            alertController?.addAction(updateAlertAction(completion: handler))
+        case .option:
+            alertController?.addAction(nextTimeAlertAction(completion: handler))
+            alertController?.addAction(updateAlertAction(completion: handler))
+        case .skip:
+            alertController?.addAction(updateAlertAction(completion: handler))
+            alertController?.addAction(nextTimeAlertAction(completion: handler))
+            alertController?.addAction(skipAlertAction(forCurrentAppStoreVersion: currentAppStoreVersion, completion: handler))
+        case .none:
+            handler?(.unknown, nil)
+        }
+
+        // If the alertType is .none, an alert will not be presented.
+        // If the `updaterWindow` is not hidden, then an alert is already presented.
+        // The latter prevents `UIAlertController`'s from appearing on top of each other.
+        if rules.alertType != .none, let updaterWindow = updaterWindow, updaterWindow.isHidden {
+            alertController?.show(window: updaterWindow)
         } else {
-            alertController = UIAlertController(title: alertTitle,
-                                                message: alertMessage,
-                                                preferredStyle: .alert)
-
-            if let tintColor = tintColor {
-                alertController?.view.tintColor = tintColor
-            }
-
-            switch rules.alertType {
-            case .force:
-                alertController?.addAction(updateAlertAction(completion: handler))
-            case .option:
-                alertController?.addAction(nextTimeAlertAction(completion: handler))
-                alertController?.addAction(updateAlertAction(completion: handler))
-            case .skip:
-                alertController?.addAction(updateAlertAction(completion: handler))
-                alertController?.addAction(nextTimeAlertAction(completion: handler))
-                alertController?.addAction(skipAlertAction(forCurrentAppStoreVersion: currentAppStoreVersion, completion: handler))
-            case .none:
-                handler?(.unknown, nil)
-            }
-
-            // If the alertType is .none, an alert will not be presented.
-            // If the `updaterWindow` is not hidden, then an alert is already presented.
-            // The latter prevents `UIAlertController`'s from appearing on top of each other.
-            if rules.alertType != .none, updaterWindow.isHidden {
-                alertController?.show(window: updaterWindow)
-            } else {
-                // This is a safety precaution to avoid multiple windows from presenting on top of each other.
-                cleanUp()
-            }
+            // This is a safety precaution to avoid multiple windows from presenting on top of each other.
+            cleanUp()
         }
     }
 
     /// Removes the `alertController` from memory.
     func cleanUp() {
-        let controller = (customAlertController as? UIViewController) ?? alertController
-        controller?.hide(window: updaterWindow)
-        controller?.dismiss(animated: true, completion: nil)
+        guard let updaterWindow = updaterWindow else { return }
+        alertController?.hide(window: updaterWindow)
+        alertController?.dismiss(animated: true, completion: nil)
         updaterWindow.resignKey()
     }
 }
@@ -285,22 +284,28 @@ private extension PresentationManager {
 // MARK: - Helpers
 
 private extension PresentationManager {
-    private func createWindow() -> UIWindow {
-        var window = UIWindow()
-        if #available(iOS 13.0, *) {
-            guard let windowScene = UIApplication.shared.connectedScenes
-                .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene else { return UIWindow() }
-            window = UIWindow(windowScene: windowScene)
-        } else {
-            window = UIWindow(frame: UIScreen.main.bounds)
-        }
+    private func createWindow() -> UIWindow? {
+        guard let windowScene = getFirstForegroundScene() else { return nil }
 
+        let window = UIWindow(windowScene: windowScene)
         window.windowLevel = UIWindow.Level.alert + 1
 
         let viewController = SirenViewController()
         viewController.retainedWindow = window
-
         window.rootViewController = viewController
+
         return window
+    }
+
+    @available(iOS 13.0, tvOS 13.0, *)
+    private func getFirstForegroundScene() -> UIWindowScene? {
+        let connectedScenes = UIApplication.shared.connectedScenes
+        if let windowActiveScene = connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            return windowActiveScene
+        } else if let windowInactiveScene = connectedScenes.first(where: { $0.activationState == .foregroundInactive }) as? UIWindowScene {
+            return windowInactiveScene
+        } else {
+            return nil
+        }
     }
 }

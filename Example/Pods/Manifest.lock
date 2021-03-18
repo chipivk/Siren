@@ -1,0 +1,16 @@
+PODS:
+  - Siren (5.8.0)
+
+DEPENDENCIES:
+  - Siren (from `../`)
+
+EXTERNAL SOURCES:
+  Siren:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Siren: 07f3b6f1bd7b729e3ef11c5a3b01e85cdfdb2b98
+
+PODFILE CHECKSUM: d209d935a01eba61b70c991ab419cca0ce2264cc
+
+COCOAPODS: 1.10.0
