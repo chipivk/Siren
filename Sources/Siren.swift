@@ -164,7 +164,7 @@ private extension Siren {
         }
 
         // Check if applicaiton has been released for the amount of days defined by the app consuming Siren.
-        guard daysSinceRelease >= rulesManager.releasedForDays else {
+        if daysSinceRelease < rulesManager.releasedForDays && rulesManager.forcedMinimunVersion == nil {
             resultsHandler?(.failure(.releasedTooSoon(daysSinceRelease: daysSinceRelease,
                                                       releasedForDays: rulesManager.releasedForDays)))
             return
@@ -186,6 +186,18 @@ private extension Siren {
     ///   - currentAppStoreVersion: The curren version of the app in the App Store.
     ///   - model: The iTunes Lookup Model.
     func determineIfAlertPresentationRulesAreSatisfied(forCurrentAppStoreVersion currentAppStoreVersion: String, andModel model: Model) {
+        // Check if the forced version is newer than the currently installed version and app store.
+        let needForceVersion = checkForcedVersion(forcedMinimunVersion: rulesManager.forcedMinimunVersion,
+                                                  appStoreVersion: currentAppStoreVersion,
+                                                  currentVersion: currentInstalledVersion)
+        guard !needForceVersion else {
+            let updateType = DataParser.parseForUpdate(forInstalledVersion: currentInstalledVersion,
+                                                       andAppStoreVersion: currentAppStoreVersion)
+            let forceRule = Rules.critical
+            presentAlert(withRules: forceRule, forCurrentAppStoreVersion: currentAppStoreVersion, model: model, andUpdateType: updateType)
+            return
+        }
+
         // Did the user:
         // - request to skip being prompted with version update alerts for a specific version
         // - and is the latest App Store update the same version that was requested?
@@ -258,6 +270,20 @@ private extension Siren {
         default:
             break
         }
+    }
+
+    func checkForcedVersion(forcedMinimunVersion: String?, appStoreVersion: String, currentVersion: String?) -> Bool {
+        guard let forcedMinimunVersion = forcedMinimunVersion, let currentVersion = currentVersion else {
+            return false
+        }
+        guard forcedMinimunVersion.compare(appStoreVersion, options: .numeric) == .orderedAscending ||
+                forcedMinimunVersion.compare(appStoreVersion, options: .numeric) == .orderedSame else {
+            return false
+        }
+        guard currentVersion.compare(forcedMinimunVersion, options: .numeric) == .orderedAscending else {
+            return false
+        }
+        return true
     }
 }
 

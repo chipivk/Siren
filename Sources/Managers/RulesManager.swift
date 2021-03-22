@@ -28,6 +28,9 @@ public struct RulesManager {
     /// The `Rules` that should be used when the App Store version of the app signifies that it is a **revision** version update (a.b.c.D).
     var revisionUpdateRules: Rules
 
+    // The minimun version number required to run the app.
+    var forcedMinimunVersion: String?
+
     /// Initializer that sets update-specific `Rules` for all updates (e.g., major, minor, patch, revision).
     /// This means that each of the four update types can have their own specific update rules.
     ///
@@ -47,12 +50,14 @@ public struct RulesManager {
                 minorUpdateRules: Rules = .default,
                 patchUpdateRules: Rules = .default,
                 revisionUpdateRules: Rules = .default,
-                showAlertAfterCurrentVersionHasBeenReleasedForDays releasedForDays: Int = 1) {
+                showAlertAfterCurrentVersionHasBeenReleasedForDays releasedForDays: Int = 1,
+                forcedMinimunVersion: String? = nil) {
         self.majorUpdateRules = majorUpdateRules
         self.minorUpdateRules = minorUpdateRules
         self.patchUpdateRules = patchUpdateRules
         self.revisionUpdateRules = revisionUpdateRules
         self.releasedForDays = releasedForDays
+        self.forcedMinimunVersion = forcedMinimunVersion
     }
 
     /// Initializer that sets the same update `Rules` for all types of updates (e.g., major, minor, patch, revision).
@@ -71,12 +76,14 @@ public struct RulesManager {
     ///   - rules: The rules that should be set for all version updates.
     ///   - releasedForDays: The amount of time (in days) that the app should delay before presenting the user
     public init(globalRules rules: Rules = .default,
-                showAlertAfterCurrentVersionHasBeenReleasedForDays releasedForDays: Int = 1) {
+                showAlertAfterCurrentVersionHasBeenReleasedForDays releasedForDays: Int = 1,
+                forcedMinimunVersion: String? = nil) {
         self.init(majorUpdateRules: rules,
                   minorUpdateRules: rules,
                   patchUpdateRules: rules,
                   revisionUpdateRules: rules,
-                  showAlertAfterCurrentVersionHasBeenReleasedForDays: releasedForDays)
+                  showAlertAfterCurrentVersionHasBeenReleasedForDays: releasedForDays,
+                  forcedMinimunVersion: forcedMinimunVersion)
     }
 
     /// Returns the appropriate update rules based on the type of version that is returned from the API.
