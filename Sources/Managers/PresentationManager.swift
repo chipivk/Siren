@@ -163,8 +163,9 @@ extension PresentationManager {
                 (customAlertController as? UIViewController)?.show(window: updaterWindow)
             } else {
                 // This is a safety precaution to avoid multiple windows from presenting on top of each other.
-                cleanUp()
+//                cleanUp()
             }
+            return
         }
 
         alertController = UIAlertController(title: alertTitle,
@@ -203,8 +204,14 @@ extension PresentationManager {
     /// Removes the `alertController` from memory.
     func cleanUp() {
         guard let updaterWindow = updaterWindow else { return }
-        alertController?.hide(window: updaterWindow)
-        alertController?.dismiss(animated: true, completion: nil)
+        let controller: UIViewController?
+        if let customAlertController = customAlertController as? UIViewController {
+            controller = customAlertController
+        } else {
+            controller = alertController
+        }
+        controller?.hide(window: updaterWindow)
+        controller?.dismiss(animated: true, completion: nil)
         updaterWindow.resignKey()
     }
 }
@@ -286,6 +293,10 @@ private extension PresentationManager {
 private extension PresentationManager {
     private func createWindow() -> UIWindow? {
         guard let windowScene = getFirstForegroundScene() else { return nil }
+
+        if let sirenViewController = windowScene.windows.last?.rootViewController as? SirenViewController {
+            return windowScene.windows.last
+        }
 
         let window = UIWindow(windowScene: windowScene)
         window.windowLevel = UIWindow.Level.alert + 1
