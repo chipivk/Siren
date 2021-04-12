@@ -128,7 +128,7 @@ extension PresentationManager {
             switch rules.alertType {
             case .force:
                 customAlertController.updateHandler = {
-                    self.cleanUp()
+//                    self.cleanUp()
                     handler?(.appStore, nil)
                 }
             case .option:
@@ -197,7 +197,7 @@ extension PresentationManager {
             alertController?.show(window: updaterWindow)
         } else {
             // This is a safety precaution to avoid multiple windows from presenting on top of each other.
-            cleanUp()
+//            cleanUp()
         }
     }
 
