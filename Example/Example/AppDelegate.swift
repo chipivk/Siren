@@ -251,10 +251,13 @@ private extension AppDelegate {
                                                         alertTitle: "Please, Update Now!",
                                                         skipButtonTitle: "Click here to skip!",
                                                         forceLanguageLocalization: .spanish)
-        siren.rulesManager = RulesManager(majorUpdateRules: .critical,
-                                          minorUpdateRules: .annoying,
-                                          patchUpdateRules: .default,
-                                          revisionUpdateRules: .relaxed)
+        let requiredAppVersion = "3.1.5"
+        siren.rulesManager = RulesManager(majorUpdateRules: .annoying,
+                                          minorUpdateRules: .annoying, //.annoying
+                                          patchUpdateRules: .annoying, //.default
+                                          revisionUpdateRules: .annoying, //.relaxed
+                                          showAlertAfterCurrentVersionHasBeenReleasedForDays: 0,
+                                          forcedMinimunVersion: requiredAppVersion)
 
         siren.presentationManager.customAlertController = CustomAlertViewController(nibName: "CustomAlertViewController", bundle: nil)
 
