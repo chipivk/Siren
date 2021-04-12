@@ -14,6 +14,8 @@
 		8EACA9731F380294003134CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EACA96B1F37F2D3003134CA /* Images.xcassets */; };
 		8EACA9741F38029B003134CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EACA9661F37F2D3003134CA /* AppDelegate.swift */; };
 		8EACA9751F38029B003134CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EACA96D1F37F2D3003134CA /* ViewController.swift */; };
+		AEC3C4042624627E0082621A /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC3C4022624627D0082621A /* CustomAlertViewController.swift */; };
+		AEC3C4052624627E0082621A /* CustomAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEC3C4032624627D0082621A /* CustomAlertViewController.xib */; };
 		E7269D91A22F64E1A0C661C5 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37940350BF612EEBD59D5DF4 /* Pods_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		8EC391811A58B465001C121E /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EE6C74B1E6A0AE100DBE454 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EE6C74C1E6A0AE100DBE454 /* SirenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SirenTests.swift; sourceTree = "<group>"; };
+		AEC3C4022624627D0082621A /* CustomAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		AEC3C4032624627D0082621A /* CustomAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAlertViewController.xib; sourceTree = "<group>"; };
 		E83E47CD9052083916E39F84 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		EA761E9782C2024D152342D4 /* Pods-Example-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Example-Tests/Pods-Example-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +119,8 @@
 		8EACA96E1F37F2DD003134CA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AEC3C4022624627D0082621A /* CustomAlertViewController.swift */,
+				AEC3C4032624627D0082621A /* CustomAlertViewController.xib */,
 				8EACA9671F37F2D3003134CA /* LaunchScreen.xib */,
 				8EACA9691F37F2D3003134CA /* Main.storyboard */,
 				8EACA96B1F37F2D3003134CA /* Images.xcassets */,
@@ -215,7 +221,7 @@
 					};
 					8EC391801A58B465001C121E = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = HT94948NDD;
+						DevelopmentTeam = HCUZ6A6WNL;
 						DevelopmentTeamName = "Arthur Sabintsev";
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
@@ -263,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC3C4052624627E0082621A /* CustomAlertViewController.xib in Resources */,
 				8EACA9711F380294003134CA /* LaunchScreen.xib in Resources */,
 				8EACA9721F380294003134CA /* Main.storyboard in Resources */,
 				8EACA9731F380294003134CA /* Images.xcassets in Resources */,
@@ -383,6 +390,7 @@
 			files = (
 				8EACA9741F38029B003134CA /* AppDelegate.swift in Sources */,
 				8EACA9751F38029B003134CA /* ViewController.swift in Sources */,
+				AEC3C4042624627E0082621A /* CustomAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,11 +574,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = HT94948NDD;
+				DEVELOPMENT_TEAM = HCUZ6A6WNL;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.Facebook;
+				PRODUCT_BUNDLE_IDENTIFIER = es.financieraelcorteingles.feci;
 				PRODUCT_NAME = Example;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -583,11 +591,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = HT94948NDD;
+				DEVELOPMENT_TEAM = HCUZ6A6WNL;
 				INFOPLIST_FILE = "$(SRCROOT)/Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.Facebook;
+				PRODUCT_BUNDLE_IDENTIFIER = es.financieraelcorteingles.feci;
 				PRODUCT_NAME = Example;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;

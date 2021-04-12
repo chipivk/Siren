@@ -84,10 +84,9 @@ public extension Siren {
             performVersionCheck()
         case .onForeground:
             addForegroundObservers()
+            // Add background app state change observers.
+            addBackgroundObservers()
         }
-
-        // Add background app state change observers.
-        addBackgroundObservers()
     }
 
     /// Launches the AppStore in two situations when the user clicked the `Update` button in the UIAlertController modal.
